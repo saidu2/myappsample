@@ -1,5 +1,8 @@
 document.addEventListener("DOMContentLoaded", fetchCurrencies)
 
+
+
+
 let currencyFrom = document.getElementById('currencyFrom')
 let currencyTo = document.getElementById('currencyTo')
 
@@ -51,9 +54,13 @@ function convertCurrency(amount=0, fromCurrency, toCurrency) {
         }
     });
 }
-
-navigator.serviceWorker.register('service-worker.js').the(()=>{
-    console.log('[serviceWorker] Registered Succesfully!')
-}).catch(()=> {
-    console.log('[serviceWorker] Registration Failed', )
-})
+if ('serviceWorker' in navigator) {
+    send().catch(err => console.error(err));
+}
+function send(){
+    navigator.serviceWorker.register('service-worker.js', {scope:'/'}).the(()=>{
+        console.log('[serviceWorker] Registered Succesfully!')
+    }).catch(()=> {
+        console.log('[serviceWorker] Registration Failed', )
+    });
+}

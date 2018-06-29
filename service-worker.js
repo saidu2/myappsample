@@ -1,9 +1,9 @@
-let cacheName = 'v3';
+let cacheName = 'currency-converter-v1';
 let contentToCache = [
-    './',
-    './index.html',
-    './main.js',
-    './CSS/style.css',
+    '/',
+    '/index.html',
+    '/main.js',
+    '/CSS/style.css',
 ];
 
 self.addEventListener('install', (event)=> {
@@ -21,7 +21,7 @@ self.addEventListener('activated', (event)=> {
     event.waitUntil(
         caches.keys().then((cacheNames)=>{
             return Promise.all(cacheNames.map((thisCacheName)=>{
-                if (thisCacheName !== cachName)
+                if (thisCacheName !== cacheName)
                 console.log("[serviceWorker] removing cache from ", thisCacheName)
                 return caches.delete(thisCacheName);
             }))
