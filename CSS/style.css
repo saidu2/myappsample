@@ -1,0 +1,27 @@
+body{
+    align-self: auto;
+}
+.container {
+    width: 80%;
+    margin: auto;
+
+}
+.my{
+    text-align: center;
+}
+.bt1{
+    text-align: center;
+}
+.formtest{
+    width: 80%;
+    margin: auto;
+    padding: 0;
+}
+fieldset{
+    margin: auto;
+    padding-left: 10%;
+    padding-top:5%;
+    padding-bottom: 10%;
+    padding-right: 5%;
+
+}
