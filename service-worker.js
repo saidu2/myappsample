@@ -1,9 +1,10 @@
-let cacheName = 'currency-converter-v1';
+const cacheName = 'currency-converter-v2';
 let contentToCache = [
     '/',
-    '/index.html',
-    '/main.js',
-    '/CSS/style.css',
+    'index.html',
+    'main.js',
+    'CSS/style.css',
+    'https://free.currencyconverterapi.com/api/v5/currencies'
 ];
 
 self.addEventListener('install', (event)=> {
@@ -11,19 +12,20 @@ self.addEventListener('install', (event)=> {
     event.waitUntil(
         caches.open(cacheName).then((cache)=> {
             console.log("[serviceWorker] caching files");
-            return cache.addAll([contentToCache]);
+            return cache.addAll(contentToCache);
         })
     );
 });
 
-self.addEventListener('activated', (event)=> {
+self.addEventListener('activate', (event)=> {
     console.log("[serviceWorker] activated")
     event.waitUntil(
-        caches.keys().then((cacheNames)=>{
-            return Promise.all(cacheNames.map((thisCacheName)=>{
+        caches.keys().then((cacheNames)=> {
+            return Promise.all(
+                cacheNames.map((thisCacheName)=>{
                 if (thisCacheName !== cacheName)
                 console.log("[serviceWorker] removing cache from ", thisCacheName)
-                return caches.delete(thisCacheName);
+                return cache.delete(thisCacheName);
             }))
         })
     )
